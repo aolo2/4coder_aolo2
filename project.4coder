@@ -1,0 +1,37 @@
+version(1);
+project_name = "4coder custom";
+
+patterns = {
+"*.c",
+"*.cpp",
+"*.h",
+"*.m",
+"*.mm",
+"*.bat",
+"*.sh",
+"*.4coder",
+"*.txt",
+};
+blacklist_patterns = {
+".*",
+};
+load_paths_custom = {
+ {"."},
+};
+load_paths = {
+ { load_paths_custom, .os = "win"  },
+ { load_paths_custom, .os = "linux"},
+ { load_paths_custom, .os = "mac"  },
+};
+
+build_super_x64_linux  = "custom/bin/buildsuper_x64-linux.sh";
+
+command_list = {
+ { .name = "build super x64",
+   .out = "*compilation*", .footer_panel = true, .save_dirty_files = true,
+   .cmd = { {build_super_x64_win32, .os ="win"  },
+            {build_super_x64_linux , .os ="linux"},
+            {build_super_x64_mac , .os ="mac"  }, }, },
+};
+
+fkey_command[1] = "build super x64";
